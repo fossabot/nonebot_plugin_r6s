@@ -3,6 +3,10 @@ import asyncio
 import re
 import json
 
+from nonebot import get_driver
+
+AUTH = (get_driver().config.r6db_user_id, get_driver().config.r6db_password)
+
 
 async def get_data_from_r6scn(user_name: str, trytimes=6) -> dict:
     if trytimes == 0:
@@ -43,10 +47,8 @@ async def get_data_from_r6sground(user_name: str) -> dict:
             d = d.replace("!47$", "true")
             d_jdson = json.loads(d)
             rdatas[d_jdson["key"]] = d_jdson["data"]
-    if not rdatas.get("userMainData"):
-        return "Not Found"
-    elif not rdatas["userMainData"].get("!15$_!6$s:!5$"):
-        return "Not Found"  # 应该是有ubi账号但没打过R6
+    if not rdatas.get("userMainData") or rdatas["userMainData"].get("!15$_!6$s:!5$"):
+        return {user_name: f"{user_name}", "error": "Not Found"}
     return rdatas
 
 
@@ -56,3 +58,14 @@ async def get_data_from_r6stats(user_name: str) -> dict:
     async with httpx.AsyncClient() as client:
         resp = await client.get("https://r6stats.com/api/stats/{ubi_id}?queue=true")
     # todo
+
+
+async def get_data_from_r6db(user_name: str) -> dict:
+    async with httpx.AsyncClient(timeout=10, auth=AUTH, follow_redirects=True) as client:
+        resp = await client.get(f"https://api.statsdb.net/r6/pc/player/{user_name}")
+    if resp.status_code == 200:
+        return resp.json()
+    elif resp.status_code == 404:
+        return {user_name: f"{user_name}", "error": "Not Found"}
+    else:
+        return {user_name: f"{user_name}", "error": "Error"}
