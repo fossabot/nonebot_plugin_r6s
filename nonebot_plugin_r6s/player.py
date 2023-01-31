@@ -196,7 +196,6 @@ def rank(mmr: int) -> str:
     return rank_tiers[tier] + rank_division[division]
 
 
-
 def new_player_from_r6scn(data: Dict) -> Player:
     player = Player(data["username"], data["Casualstat"]["user_id"])
     for d in data["Basicstat"]:

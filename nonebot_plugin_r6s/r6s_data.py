@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import httpx
 import asyncio
 
@@ -125,11 +127,7 @@ def operators(data: dict) -> str:
 
 
 def gen_play(data: dict) -> str:
-    update_at_date = [
-        str(data["update_at"]["year"]+1900),
-        str(data["update_at"]["month"]+1),
-        str(data["update_at"]["date"]),
-    ]
+    last_rank_time = datetime.fromtimestamp(data["time"] / 1000.0).strftime('%Y-%m-%d %H:%M:%S.%f')
     update_at_time = [
         str(data["update_at"]["hours"]),
         str(data["update_at"]["minutes"])
