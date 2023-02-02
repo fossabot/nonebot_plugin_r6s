@@ -15,8 +15,12 @@ Rainbow Six Siege Players Searcher For Nonebot2
   <a href="https://pypi.python.org/pypi/nonebot-plugin-r6s">
     <img src="https://img.shields.io/pypi/v/nonebot-plugin-r6s.svg" alt="pypi">
   </a>
+<a href="https://app.fossa.com/projects/git%2Bgithub.com%2FBalconyJH%2Fnonebot_plugin_r6s?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FBalconyJH%2Fnonebot_plugin_r6s.svg?type=shield"/></a>
   <img src="https://img.shields.io/badge/python-3.7.3+-blue.svg" alt="python">
 </p>
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FBalconyJH%2Fnonebot_plugin_r6s.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FBalconyJH%2Fnonebot_plugin_r6s?ref=badge_large)
 
 ## 使用方法
 
@@ -89,4 +93,3 @@ nonebot.load_plugin("nonebot_plugin_r6s")
 [nonebot/nonebot2](https://github.com/nonebot/nonebot2/)：简单好用，扩展性极强的 Bot 框架
 
 [Mrs4s/go-cqhttp](https://github.com/Mrs4s/go-cqhttp)：更新迭代快如疯狗的 [OneBot](https://github.com/howmanybots/onebot/blob/master/README.md) Golang 原生实现
-
